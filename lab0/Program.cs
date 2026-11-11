@@ -10,8 +10,8 @@ namespace lab0
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello");
-            Console.ReadLine();
+            Console.WriteLine("HELLO WORLD!!!");
+            Console.ReadLine(); // Нужно для предотвращения закрытия окна консоли
         }
     }
 }
