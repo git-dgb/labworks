@@ -11,7 +11,7 @@ namespace lab0
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Console.ReadLine();
+            Console.ReadLine(); // Нужно для предотвращения закрытия окна консоли
         }
     }
 }
