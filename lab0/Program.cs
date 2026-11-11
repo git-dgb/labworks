@@ -11,7 +11,7 @@ namespace lab0
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Console.ReadLine(); // Используется для того, чтобы остановить автоматическое закрытие окна
+            Console.ReadLine();
         }
     }
 }
