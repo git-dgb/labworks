@@ -78,7 +78,20 @@
             Console.WriteLine("Введите Фамилию человека:");
             LastName = Console.ReadLine();
             Console.WriteLine("Введите Возраст человека:");
-            Age = int.Parse(Console.ReadLine());
+
+            while (true)
+            {
+                string? input = Console.ReadLine();
+
+                if (int.TryParse(input, out int age) && age >= 0)
+                {
+                    Age = age;
+                    break;
+                }
+
+                Console.WriteLine("Ошибка! Введите неотрицательное целое число.");
+            }
+
             Console.WriteLine("Введите Пол человека (Male или Female):");
             Gender = Enum.Parse<Gender>(Console.ReadLine());
         }
