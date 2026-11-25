@@ -96,5 +96,10 @@ namespace PersonLibrary
             }
             return -1;
         }
+
+        public void Clear()
+        {
+            _count = 0;
+        }
     }
 }
