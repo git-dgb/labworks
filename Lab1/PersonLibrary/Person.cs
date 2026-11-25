@@ -191,7 +191,7 @@
                     (symbol >= 'A' && symbol <= 'Z') ||
                     (symbol >= 'a' && symbol <= 'z');
 
-                if (!isRussian && !isEnglish && symbol != ' ')
+                if (!isRussian && !isEnglish && symbol != ' ' && symbol != '-')
                 {
                     return false;
                 }
@@ -203,14 +203,22 @@
         private static string NormalizeName(string input)
         {
             input = input.ToLower();
-            string[] words = input.Split(' ');
 
-            for (int i = 0; i < words.Length; i++)
+            string result = "";
+
+            for (int i = 0; i < input.Length; i++)
             {
-                words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1);
+                if (i == 0 || input[i - 1] == ' ' || input[i - 1] == '-')
+                {
+                    result += char.ToUpper(input[i]);
+                }
+                else
+                {
+                    result += input[i];
+                }
             }
 
-            return string.Join(" ", words);
+            return result;
         }
     }
 }
