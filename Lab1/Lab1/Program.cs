@@ -22,6 +22,8 @@ internal class Program
         secondList.Add(person5);
         secondList.Add(person6);
 
+        PrintList(firstList, "Первый список:");
+        PrintList(secondList, "Второй список:");
     }
 
     private static void PrintList(PersonList list, string title)
