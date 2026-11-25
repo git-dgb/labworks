@@ -39,5 +39,25 @@ namespace PersonLibrary
             _persons[_count] = person;
             _count++;
         }
+
+        public void Remove(Person person)
+        {
+            for (int i = 0; i < _count; i++)
+            {
+                if (person == _persons[i])
+                {
+                    int removeIndex = i;
+                    if (removeIndex != _count - 1)
+                    {
+                        for (int j = removeIndex; j < _count - 1; j++)
+                        {
+                            _persons[j] = _persons[j + 1];
+                        }
+                    }
+                    _count--;
+                    break;
+                }
+            }
+        }
     }
 }
