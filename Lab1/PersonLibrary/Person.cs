@@ -79,8 +79,57 @@
             LastName = Console.ReadLine();
             Console.WriteLine("Введите Возраст человека:");
             Age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите Пол человека:");
+            Console.WriteLine("Введите Пол человека (Male или Female):");
             Gender = Enum.Parse<Gender>(Console.ReadLine());
+        }
+
+        public static Person GetRandomPerson()
+        {
+            Random random = new Random();
+            int age = random.Next(18, 101);
+
+            int genderNumber = random.Next(2);
+
+            string[] names;
+            string[] surnames;
+            Gender gender;
+
+            if (genderNumber == 0)
+            {
+                gender = Gender.Male;
+                names = new string[]
+                    {
+                        "Иван", "Александр", "Дмитрий", "Сергей", "Михаил",
+                        "Андрей", "Максим", "Артём", "Никита", "Владимир"
+                    };
+                surnames = new string[]
+                    {
+                        "Иванов", "Петров", "Матвеев", "Смирнов", "Кузнецов",
+                        "Попов", "Васильев", "Соколов", "Михайлов", "Новиков"
+                    };
+            }
+            else
+            {
+                gender = Gender.Female;
+                names = new string[]
+                    {
+                        "Алина", "Анна", "Екатерина", "Ольга", "Анастасия",
+                        "Елена", "Дарья", "Наталья", "София", "Виктория"
+                    };
+                surnames = new string[]
+                    {
+                        "Иванова", "Петрова", "Матвеева", "Смирнова", "Кузнецова",
+                        "Попова", "Васильева", "Соколова", "Михайлова", "Новикова"
+                    };
+            }
+            
+            int indexNames = random.Next(names.Length);
+            int indexSurnames = random.Next(surnames.Length);
+
+            string firstName = names[indexNames];
+            string lastName = surnames[indexSurnames];
+
+            return new Person(firstName, lastName, age, gender);
         }
     }
 }

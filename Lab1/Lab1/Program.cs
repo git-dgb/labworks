@@ -7,12 +7,12 @@ internal class Program
         PersonList firstList = new PersonList();
         PersonList secondList = new PersonList();
 
-        Person person1 = new Person("Иван", "Иванов", 25, Gender.Male);
-        Person person2 = new Person("Анна", "Петрова", 22, Gender.Female);
-        Person person3 = new Person("Пётр", "Сергеев", 30, Gender.Male);
-        Person person4 = new Person("Сергей", "Смирнов", 40, Gender.Male);
-        Person person5 = new Person("Елена", "Кулешова", 67, Gender.Female);
-        Person person6 = new Person("Матвей", "Матвеев", 29, Gender.Male);
+        Person person1 = Person.GetRandomPerson();
+        Person person2 = Person.GetRandomPerson();
+        Person person3 = Person.GetRandomPerson();
+        Person person4 = Person.GetRandomPerson();
+        Person person5 = Person.GetRandomPerson();
+        Person person6 = Person.GetRandomPerson();
 
         WaitForKey();
 
