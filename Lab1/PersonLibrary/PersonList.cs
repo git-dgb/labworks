@@ -42,21 +42,17 @@ namespace PersonLibrary
 
         public void Remove(Person person)
         {
-            for (int i = 0; i < _count; i++)
+            int removeIndex = IndexOf(person);
+            if (removeIndex != -1)
             {
-                if (person == _persons[i])
+                if (removeIndex != _count - 1)
                 {
-                    int removeIndex = i;
-                    if (removeIndex != _count - 1)
+                    for (int j = removeIndex; j < _count - 1; j++)
                     {
-                        for (int j = removeIndex; j < _count - 1; j++)
-                        {
-                            _persons[j] = _persons[j + 1];
-                        }
+                        _persons[j] = _persons[j + 1];
                     }
-                    _count--;
-                    break;
                 }
+                _count--;
             }
         }
 
