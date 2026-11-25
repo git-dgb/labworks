@@ -74,5 +74,15 @@ namespace PersonLibrary
                 _count--;
             }
         }
+
+        public Person? GetPerson(int index)
+        {
+            if (index >= 0 && index < _count)
+            {
+                return _persons[index];
+            }
+            
+            return null;
+        }
     }
 }
