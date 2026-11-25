@@ -84,5 +84,17 @@ namespace PersonLibrary
             
             return null;
         }
+
+        public int IndexOf(Person person)
+        {
+            for (int l = 0; l < _count; l++)
+            {
+                if (person == _persons[l])
+                {
+                    return l;
+                }
+            }
+            return -1;
+        }
     }
 }
