@@ -59,5 +59,20 @@ namespace PersonLibrary
                 }
             }
         }
+
+        public void RemoveAt(int index)
+        {
+            if (index >= 0 && index < _count)
+            {
+                if (index != _count - 1)
+                {
+                    for (int k = index; k < _count - 1; k++)
+                    {
+                        _persons[k] = _persons[k + 1];
+                    }
+                }
+                _count--;
+            }
+        }
     }
 }
