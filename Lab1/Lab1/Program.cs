@@ -14,6 +14,8 @@ internal class Program
         Person person5 = new Person("Елена", "Кулешова", 67, Gender.Female);
         Person person6 = new Person("Матвей", "Матвеев", 29, Gender.Male);
 
+        WaitForKey();
+
         firstList.Add(person1);
         firstList.Add(person2);
         firstList.Add(person3);
@@ -24,6 +26,8 @@ internal class Program
 
         PrintList(firstList, "Первый список:");
         PrintList(secondList, "Второй список:");
+
+        WaitForKey();
     }
 
     private static void PrintList(PersonList list, string title)
@@ -43,5 +47,12 @@ internal class Program
                     person.Gender);
             }
         }
+    }
+
+    private static void WaitForKey()
+    {
+        Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+        Console.ReadKey();
+        Console.WriteLine();
     }
 }
