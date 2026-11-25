@@ -57,6 +57,11 @@ internal class Program
 
         PrintList(firstList, "Первый список:");
         PrintList(secondList, "Второй список:");
+
+        WaitForKey();
+
+        secondList.Clear();
+        PrintList(secondList, $"Второй список (кол-во человек - {secondList.Count}):");
     }
 
     private static void PrintList(PersonList list, string title)
