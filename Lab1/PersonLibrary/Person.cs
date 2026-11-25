@@ -71,5 +71,16 @@
                 $"Возраст: {Age}\n" +
                 $"Пол: {Gender}\n");
         }
+        public void Read()
+        {
+            Console.WriteLine("Введите Имя человека:");
+            FirstName = Console.ReadLine();
+            Console.WriteLine("Введите Фамилию человека:");
+            LastName = Console.ReadLine();
+            Console.WriteLine("Введите Возраст человека:");
+            Age = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите Пол человека:");
+            Gender = Enum.Parse<Gender>(Console.ReadLine());
+        }
     }
 }
