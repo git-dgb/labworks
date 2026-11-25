@@ -62,5 +62,14 @@
             Age = age;
             Gender = gender;
         }
+
+        public void Print()
+        {
+            Console.WriteLine(
+                $"Имя: {FirstName}\n" +
+                $"Фамилия: {LastName}\n" +
+                $"Возраст: {Age}\n" +
+                $"Пол: {Gender}\n");
+        }
     }
 }
