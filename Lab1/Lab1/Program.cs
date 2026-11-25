@@ -40,6 +40,18 @@ internal class Program
         PrintList(firstList, "Первый список после добавления новой персоны:");
 
         WaitForKey();
+
+        Person? personToCopy = firstList.GetPerson(1);
+
+        if (personToCopy != null)
+        {
+            secondList.Add(personToCopy);
+        }
+
+        PrintList(firstList, "Первый список:");
+        PrintList(secondList, "Второй список:");
+
+        WaitForKey();
     }
 
     private static void PrintList(PersonList list, string title)
