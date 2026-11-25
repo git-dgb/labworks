@@ -5,10 +5,10 @@ internal class Program
     private static void Main(string[] args)
     {
 
-        ///Person person = new Person("", "", 0, Gender.Male);
-        ///person.Read();
-        ///person.Print();
-        ///WaitForKey();
+       ///Person person = new Person("", "", 0, Gender.Male);
+       ///person.Read();
+       ///person.Print();
+       ///WaitForKey();
 
         PersonList firstList = new PersonList();
         PersonList secondList = new PersonList();

@@ -74,9 +74,37 @@
         public void Read()
         {
             Console.WriteLine("Введите Имя человека:");
-            FirstName = Console.ReadLine();
+
+            while (true)
+            {
+
+                string? input = Console.ReadLine();
+
+                if (IsValidName(input))
+                {
+                    FirstName = input;
+                    break;
+                }
+
+                Console.WriteLine("Ошибка! Имя может содержать только русские и английские буквы.");
+            }
+
             Console.WriteLine("Введите Фамилию человека:");
-            LastName = Console.ReadLine();
+
+            while (true)
+            {
+
+                string? input = Console.ReadLine();
+
+                if (IsValidName(input))
+                {
+                    LastName = input;
+                    break;
+                }
+
+                Console.WriteLine("Ошибка! Фамилия может содержать только русские и английские буквы.");
+            }
+
             Console.WriteLine("Введите Возраст человека:");
 
             while (true)
@@ -143,6 +171,33 @@
             string lastName = surnames[indexSurnames];
 
             return new Person(firstName, lastName, age, gender);
+        }
+
+        private static bool IsValidName(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return false;
+            }
+
+            foreach (char symbol in input)
+            {
+                bool isRussian =
+                    (symbol >= 'А' && symbol <= 'я') ||
+                    symbol == 'Ё' ||
+                    symbol == 'ё';
+
+                bool isEnglish =
+                    (symbol >= 'A' && symbol <= 'Z') ||
+                    (symbol >= 'a' && symbol <= 'z');
+
+                if (!isRussian && !isEnglish && symbol != ' ')
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
