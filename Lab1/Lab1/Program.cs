@@ -23,4 +23,23 @@ internal class Program
         secondList.Add(person6);
 
     }
+
+    private static void PrintList(PersonList list, string title)
+    {
+        Console.WriteLine(title);
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            Person? person = list.GetPerson(i);
+
+            if (person != null)
+            {
+                Console.WriteLine(
+                    person.FirstName + " " +
+                    person.LastName + ", " +
+                    person.Age + ", " +
+                    person.Gender);
+            }
+        }
+    }
 }
