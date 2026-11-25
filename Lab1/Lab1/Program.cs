@@ -6,7 +6,7 @@ internal class Program
     {
         PersonList firstList = new PersonList();
         PersonList secondList = new PersonList();
-        
+
         Person person1 = new Person("Иван", "Иванов", 25, Gender.Male);
         Person person2 = new Person("Анна", "Петрова", 22, Gender.Female);
         Person person3 = new Person("Пётр", "Сергеев", 30, Gender.Male);
@@ -26,6 +26,18 @@ internal class Program
 
         PrintList(firstList, "Первый список:");
         PrintList(secondList, "Второй список:");
+
+        WaitForKey();
+
+        Person person7 = new Person(
+            "Александр",
+            "Александров",
+            35,
+            Gender.Male);
+
+        firstList.Add(person7);
+
+        PrintList(firstList, "Первый список после добавления новой персоны:");
 
         WaitForKey();
     }
