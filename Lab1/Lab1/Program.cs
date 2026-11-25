@@ -52,6 +52,11 @@ internal class Program
         PrintList(secondList, "Второй список:");
 
         WaitForKey();
+
+        firstList.Remove(personToCopy);
+
+        PrintList(firstList, "Первый список:");
+        PrintList(secondList, "Второй список:");
     }
 
     private static void PrintList(PersonList list, string title)
