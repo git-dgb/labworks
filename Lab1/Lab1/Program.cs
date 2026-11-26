@@ -4,6 +4,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        Person person = new Person("", "", 0, Gender.Male);
+        person.Read();
+        person.Print();
+
+        WaitForKey();
+
         // Создаём два списка персон.
         Console.WriteLine(
             "Создание двух списков персон, содержащих по три человека...");
