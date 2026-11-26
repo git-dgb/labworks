@@ -52,18 +52,8 @@
             if (_count == _persons.Length)
             {
                 //TODO: to const+
-                Person[] personsNew = new Person[_count + GrowthStep];
-
-                for (int i = 0; i < _count; i++)
-                {
-                    personsNew[i] = _persons[i];
-                }
-
-                _persons = personsNew;
+                Resize(_persons.Length + GrowthStep);
             }
-
-            _persons[_count] = person;
-            _count++;
         }
 
         /// <summary>
@@ -76,13 +66,7 @@
 
             if (removeIndex != -1)
             {
-                for (int i = removeIndex; i < _count - 1; i++)
-                {
-                    _persons[i] = _persons[i + 1];
-                }
-
-                _count--;
-                _persons[_count] = null!;
+                RemoveAt(removeIndex);
             }
         }
 
@@ -93,7 +77,7 @@
         /// <param name="index">Индекс удаляемой персоны.</param>
         public void RemoveAt(int index)
         {
-            //TODO: back resize
+            //TODO: back resize+
             if (index >= 0 && index < _count)
             {
                 for (int i = index; i < _count - 1; i++)
@@ -103,6 +87,11 @@
 
                 _count--;
                 _persons[_count] = null!;
+
+                if (_count < _persons.Length / 2)
+                {
+                    Resize(_count + GrowthStep);
+                }
             }
         }
 
@@ -167,6 +156,11 @@
             }
 
             _persons = personsNew;
+
+            if (_persons.Length > InitialCapacity)
+            {
+                _persons = new Person[InitialCapacity];
+            }
         }
     }
 }
