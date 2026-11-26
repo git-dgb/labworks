@@ -1,5 +1,8 @@
 ﻿namespace PersonLibrary
 {
+    /// <summary>
+    /// Представляет человека и содержит методы для работы с его данными.
+    /// </summary>
     public class Person
     {
         private string _firstName;
@@ -7,6 +10,9 @@
         private int _age;
         private Gender _gender;
 
+        /// <summary>
+        /// Возвращает или задаёт имя человека.
+        /// </summary>
         public string FirstName
         {
             get
@@ -19,6 +25,9 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт фамилию человека.
+        /// </summary>
         public string LastName
         {
             get
@@ -31,6 +40,9 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт возраст человека.
+        /// </summary>
         public int Age
         {
             get
@@ -43,6 +55,9 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт пол человека.
+        /// </summary>
         public Gender Gender
         {
             get
@@ -55,6 +70,13 @@
             }
         }
 
+        /// <summary>
+        /// Создаёт объект человека с заданными характеристиками.
+        /// </summary>
+        /// <param name="firstName">Имя человека.</param>
+        /// <param name="lastName">Фамилия человека.</param>
+        /// <param name="age">Возраст человека.</param>
+        /// <param name="gender">Пол человека.</param>
         public Person(string firstName, string lastName, int age, Gender gender)
         {
             FirstName = firstName;
@@ -63,6 +85,9 @@
             Gender = gender;
         }
 
+        /// <summary>
+        /// Выводит информацию о человеке в консоль.
+        /// </summary>
         public void Print()
         {
             Console.WriteLine(
@@ -71,41 +96,46 @@
                 $"Возраст: {Age}\n" +
                 $"Пол: {Gender}\n");
         }
+
+        /// <summary>
+        /// Считывает данные о человеке с консоли.
+        /// Проверяет корректность введённых значений.
+        /// </summary>
         public void Read()
         {
-            Console.WriteLine("Введите Имя человека:");
+            Console.WriteLine("Введите имя человека:");
 
             while (true)
             {
-
                 string? input = Console.ReadLine();
 
                 if (IsValidName(input))
                 {
-                    FirstName = NormalizeName(input);
+                    FirstName = NormalizeName(input!);
                     break;
                 }
 
-                Console.WriteLine("Ошибка! Имя может содержать только русские и английские буквы.");
+                Console.WriteLine(
+                    "Ошибка! Имя может содержать только русские и английские буквы, пробелы и дефисы.");
             }
 
-            Console.WriteLine("Введите Фамилию человека:");
+            Console.WriteLine("Введите фамилию человека:");
 
             while (true)
             {
-
                 string? input = Console.ReadLine();
 
                 if (IsValidName(input))
                 {
-                    LastName = NormalizeName(input);
+                    LastName = NormalizeName(input!);
                     break;
                 }
 
-                Console.WriteLine("Ошибка! Фамилия может содержать только русские и английские буквы.");
+                Console.WriteLine(
+                    "Ошибка! Фамилия может содержать только русские и английские буквы, пробелы и дефисы.");
             }
 
-            Console.WriteLine("Введите Возраст человека:");
+            Console.WriteLine("Введите возраст человека:");
 
             while (true)
             {
@@ -120,10 +150,14 @@
                 Console.WriteLine("Ошибка! Введите неотрицательное целое число.");
             }
 
-            Console.WriteLine("Введите Пол человека (Male или Female):");
+            Console.WriteLine("Введите пол человека (Male или Female):");
             Gender = Enum.Parse<Gender>(Console.ReadLine());
         }
 
+        /// <summary>
+        /// Создаёт человека со случайными характеристиками.
+        /// </summary>
+        /// <returns>Новый объект человека.</returns>
         public static Person GetRandomPerson()
         {
             Random random = new Random();
@@ -138,32 +172,36 @@
             if (genderNumber == 0)
             {
                 gender = Gender.Male;
+
                 names = new string[]
-                    {
-                        "Иван", "Александр", "Дмитрий", "Сергей", "Михаил",
-                        "Андрей", "Максим", "Артём", "Никита", "Владимир"
-                    };
+                {
+                    "Иван", "Александр", "Дмитрий", "Сергей", "Михаил",
+                    "Андрей", "Максим", "Артём", "Никита", "Владимир"
+                };
+
                 surnames = new string[]
-                    {
-                        "Иванов", "Петров", "Матвеев", "Смирнов", "Кузнецов",
-                        "Попов", "Васильев", "Соколов", "Михайлов", "Новиков"
-                    };
+                {
+                    "Иванов", "Петров", "Матвеев", "Смирнов", "Кузнецов",
+                    "Попов", "Васильев", "Соколов", "Михайлов", "Новиков"
+                };
             }
             else
             {
                 gender = Gender.Female;
+
                 names = new string[]
-                    {
-                        "Алина", "Анна", "Екатерина", "Ольга", "Анастасия",
-                        "Елена", "Дарья", "Наталья", "София", "Виктория"
-                    };
+                {
+                    "Алина", "Анна", "Екатерина", "Ольга", "Анастасия",
+                    "Елена", "Дарья", "Наталья", "София", "Виктория"
+                };
+
                 surnames = new string[]
-                    {
-                        "Иванова", "Петрова", "Матвеева", "Смирнова", "Кузнецова",
-                        "Попова", "Васильева", "Соколова", "Михайлова", "Новикова"
-                    };
+                {
+                    "Иванова", "Петрова", "Матвеева", "Смирнова", "Кузнецова",
+                    "Попова", "Васильева", "Соколова", "Михайлова", "Новикова"
+                };
             }
-            
+
             int indexNames = random.Next(names.Length);
             int indexSurnames = random.Next(surnames.Length);
 
@@ -173,7 +211,12 @@
             return new Person(firstName, lastName, age, gender);
         }
 
-        private static bool IsValidName(string input)
+        /// <summary>
+        /// Проверяет, содержит ли строка допустимые символы для имени или фамилии.
+        /// </summary>
+        /// <param name="input">Проверяемая строка.</param>
+        /// <returns>True, если строка корректна; иначе False.</returns>
+        private static bool IsValidName(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -183,7 +226,8 @@
             foreach (char symbol in input)
             {
                 bool isRussian =
-                    (symbol >= 'А' && symbol <= 'я') ||
+                    (symbol >= 'А' && symbol <= 'Я') ||
+                    (symbol >= 'а' && symbol <= 'я') ||
                     symbol == 'Ё' ||
                     symbol == 'ё';
 
@@ -200,6 +244,12 @@
             return true;
         }
 
+        /// <summary>
+        /// Приводит имя или фамилию к нормализованному регистру.
+        /// Первая буква и буквы после пробела или дефиса становятся заглавными.
+        /// </summary>
+        /// <param name="input">Строка для нормализации.</param>
+        /// <returns>Нормализованная строка.</returns>
         private static string NormalizeName(string input)
         {
             input = input.ToLower();
