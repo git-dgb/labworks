@@ -157,17 +157,17 @@
         /// Считывает данные о человеке с консоли.
         /// Проверяет корректность введённых значений.
         /// </summary>
-        public void Read()
+        public void Read(IInputProvider input)
         {
             Console.WriteLine("Введите имя человека:");
 
             while (true)
             {
-                string? input = Console.ReadLine();
+                string? line = input.ReadLine();
 
                 try
                 {
-                    FirstName = input!;
+                    FirstName = line!;
                     break;
                 }
                 catch (ArgumentException)
@@ -181,11 +181,11 @@
 
             while (true)
             {
-                string? input = Console.ReadLine();
+                string? line = input.ReadLine();
 
-                if (IsValidName(input))
+                if (IsValidName(line))
                 {
-                    LastName = NormalizeName(input!);
+                    LastName = NormalizeName(line!);
                     break;
                 }
 
@@ -197,9 +197,9 @@
 
             while (true)
             {
-                string? input = Console.ReadLine();
+                string? line = input.ReadLine();
 
-                if (int.TryParse(input, out int age))
+                if (int.TryParse(line, out int age))
                 {
                     try
                     {

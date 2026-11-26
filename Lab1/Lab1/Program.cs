@@ -5,9 +5,9 @@ internal class Program
     //TODO: XML
     private static void Main(string[] args)
     {
-        Person person = new Person("", "", 0, Gender.Male);
-        person.Read();
-        person.Print();
+        IInputProvider consoleInput = new ConsoleInputProvider();
+        Person newPerson = new Person("Иван", "Иванов", 0, Gender.Male);
+        newPerson.Read(consoleInput);
 
         WaitForKey();
 
