@@ -5,12 +5,47 @@
     /// </summary>
     public class Person
     {
-        //TODO: XML
+        /// <summary>
+        /// Ввод границ возраста в константы класса
+        /// </summary>
+        private const int MinAge = 18;
+        private const int MaxAge = 100;
+
+        /// <summary>
+        /// Статические поля для хранения имён и фамилий
+        /// </summary>
+        private static readonly string[] MaleNames =
+            {
+                "Иван", "Александр", "Дмитрий", "Сергей", "Михаил",
+                "Андрей", "Максим", "Артём", "Никита", "Владимир"
+            };
+
+        private static readonly string[] MaleSurnames =
+            {
+                "Иванов", "Петров", "Матвеев", "Смирнов", "Кузнецов",
+                "Попов", "Васильев", "Соколов", "Михайлов", "Новиков"
+            };
+
+        private static readonly string[] FemaleNames =
+            {
+                "Алина", "Анна", "Екатерина", "Ольга", "Анастасия",
+                "Елена", "Дарья", "Наталья", "София", "Виктория"
+            };
+
+        private static readonly string[] FemaleSurnames =
+            {
+                "Иванова", "Петрова", "Матвеева", "Смирнова", "Кузнецова",
+                "Попова", "Васильева", "Соколова", "Михайлова", "Новикова"
+            };
+
+        //TODO: XML+
+        /// <summary>
+        /// Создание приватных полей класса.
+        /// </summary>
         private string _firstName;
         private string _lastName;
         private int _age;
-        //TODO: remove
-        private Gender _gender;
+        //TODO: remove+
 
         /// <summary>
         /// Возвращает или задаёт имя человека.
@@ -23,8 +58,16 @@
             }
             set
             {
-                //TODO: validation
-                _firstName = value;
+                //TODO: validation+
+                if (!IsValidName(value))
+                {
+                    throw new ArgumentException(
+                        "Имя может содержать только русские и " +
+                        "английские буквы, пробелы и дефисы.",
+                        nameof(value));
+                }
+
+                _firstName = NormalizeName(value);
             }
         }
 
@@ -39,8 +82,16 @@
             }
             set
             {
-                //TODO: validation
-                _lastName = value;
+                //TODO: validation+
+                if (!IsValidName(value))
+                {
+                    throw new ArgumentException(
+                        "Фамилия может содержать только русские и " +
+                        "английские буквы, пробелы и дефисы.",
+                        nameof(value));
+                }
+
+                _lastName = NormalizeName(value);
             }
         }
 
@@ -56,6 +107,13 @@
             set
             {
                 //TODO: validation
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        nameof(value),
+                        "Возраст не может быть отрицательным.");
+                }
+
                 _age = value;
             }
         }
@@ -64,17 +122,7 @@
         /// <summary>
         /// Возвращает или задаёт пол человека.
         /// </summary>
-        public Gender Gender
-        {
-            get
-            {
-                return _gender;
-            }
-            set
-            {
-                _gender = value;
-            }
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Создаёт объект человека с заданными характеристиками.
@@ -117,14 +165,16 @@
             {
                 string? input = Console.ReadLine();
 
-                if (IsValidName(input))
+                try
                 {
-                    FirstName = NormalizeName(input!);
+                    FirstName = input!;
                     break;
                 }
-
-                Console.WriteLine(
-                    "Ошибка! Имя может содержать только русские и английские буквы, пробелы и дефисы.");
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("Ошибка! Имя может содержать только" +
+                        " русские и английские буквы, пробелы и дефисы.");
+                }
             }
 
             Console.WriteLine("Введите фамилию человека:");
@@ -149,13 +199,22 @@
             {
                 string? input = Console.ReadLine();
 
-                if (int.TryParse(input, out int age) && age >= 0)
+                if (int.TryParse(input, out int age))
                 {
-                    Age = age;
-                    break;
+                    try
+                    {
+                        Age = age;
+                        break;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("Ошибка! Возраст не может быть отрицательным.");
+                    }
                 }
-
-                Console.WriteLine("Ошибка! Введите неотрицательное целое число.");
+                else
+                {
+                    Console.WriteLine("Ошибка! Введите целое число.");
+                }
             }
 
             Console.WriteLine("Введите пол человека (Male или Female):");
@@ -169,54 +228,20 @@
         public static Person GetRandomPerson()
         {
             Random random = new Random();
-            //TODO: to const
-            int age = random.Next(18, 101);
+            //TODO: to const+
+            int age = random.Next(MinAge, MaxAge + 1);
 
-            //TODO: refactor
-            int genderNumber = random.Next(2);
+            //TODO: refactor+
+            Gender gender = random.Next(2) == 0 ? Gender.Male : Gender.Female;
 
-            string[] names;
-            string[] surnames;
-            Gender gender;
+            string[] names = gender == Gender.Male ? MaleNames : FemaleNames;
+            string[] surnames = gender == Gender.Male ? MaleSurnames : FemaleSurnames;
 
-            if (genderNumber == 0)
-            {
-                gender = Gender.Male;
+            int indexName = random.Next(names.Length);
+            int indexSurname = random.Next(surnames.Length);
 
-                names = new string[]
-                {
-                    "Иван", "Александр", "Дмитрий", "Сергей", "Михаил",
-                    "Андрей", "Максим", "Артём", "Никита", "Владимир"
-                };
-
-                surnames = new string[]
-                {
-                    "Иванов", "Петров", "Матвеев", "Смирнов", "Кузнецов",
-                    "Попов", "Васильев", "Соколов", "Михайлов", "Новиков"
-                };
-            }
-            else
-            {
-                gender = Gender.Female;
-
-                names = new string[]
-                {
-                    "Алина", "Анна", "Екатерина", "Ольга", "Анастасия",
-                    "Елена", "Дарья", "Наталья", "София", "Виктория"
-                };
-
-                surnames = new string[]
-                {
-                    "Иванова", "Петрова", "Матвеева", "Смирнова", "Кузнецова",
-                    "Попова", "Васильева", "Соколова", "Михайлова", "Новикова"
-                };
-            }
-
-            int indexNames = random.Next(names.Length);
-            int indexSurnames = random.Next(surnames.Length);
-
-            string firstName = names[indexNames];
-            string lastName = surnames[indexSurnames];
+            string firstName = names[indexName];
+            string lastName = surnames[indexSurname];
 
             return new Person(firstName, lastName, age, gender);
         }
