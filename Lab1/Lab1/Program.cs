@@ -6,6 +6,9 @@ internal class Program
     //TODO: XML+
     private static void Main(string[] args)
     {
+        /// <summary>
+        /// Блок проверки ручного ввода персон.
+        /// </summary>
         IInputProvider consoleInput = new ConsoleInputProvider();
         IOutputProvider consoleOutput = new ConsoleOutputProvider();
         Person newPerson = new Person("Иван", "Иванов", 0, Gender.Male);
