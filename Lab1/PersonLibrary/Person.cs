@@ -5,9 +5,11 @@
     /// </summary>
     public class Person
     {
+        //TODO: XML
         private string _firstName;
         private string _lastName;
         private int _age;
+        //TODO: remove
         private Gender _gender;
 
         /// <summary>
@@ -21,6 +23,7 @@
             }
             set
             {
+                //TODO: validation
                 _firstName = value;
             }
         }
@@ -36,6 +39,7 @@
             }
             set
             {
+                //TODO: validation
                 _lastName = value;
             }
         }
@@ -51,9 +55,11 @@
             }
             set
             {
+                //TODO: validation
                 _age = value;
             }
         }
+
 
         /// <summary>
         /// Возвращает или задаёт пол человека.
@@ -85,6 +91,7 @@
             Gender = gender;
         }
 
+        //TODO: refactor
         /// <summary>
         /// Выводит информацию о человеке в консоль.
         /// </summary>
@@ -97,6 +104,7 @@
                 $"Пол: {Gender}\n");
         }
 
+        //TODO: refactor
         /// <summary>
         /// Считывает данные о человеке с консоли.
         /// Проверяет корректность введённых значений.
@@ -161,8 +169,10 @@
         public static Person GetRandomPerson()
         {
             Random random = new Random();
+            //TODO: to const
             int age = random.Next(18, 101);
 
+            //TODO: refactor
             int genderNumber = random.Next(2);
 
             string[] names;
@@ -226,16 +236,16 @@
             foreach (char symbol in input)
             {
                 bool isRussian =
-                    (symbol >= 'А' && symbol <= 'Я') ||
-                    (symbol >= 'а' && symbol <= 'я') ||
-                    symbol == 'Ё' ||
-                    symbol == 'ё';
+                    (symbol >= 'А' && symbol <= 'Я') 
+                    || (symbol >= 'а' && symbol <= 'я') 
+                    || symbol == 'Ё' || symbol == 'ё';
 
                 bool isEnglish =
-                    (symbol >= 'A' && symbol <= 'Z') ||
-                    (symbol >= 'a' && symbol <= 'z');
+                    (symbol >= 'A' && symbol <= 'Z') 
+                    || (symbol >= 'a' && symbol <= 'z');
 
-                if (!isRussian && !isEnglish && symbol != ' ' && symbol != '-')
+                if (!isRussian && !isEnglish 
+                    && symbol != ' ' && symbol != '-')
                 {
                     return false;
                 }

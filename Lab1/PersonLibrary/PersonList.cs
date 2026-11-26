@@ -5,6 +5,7 @@
     /// </summary>
     public class PersonList
     {
+        //TODO: XML
         private Person[] _persons;
         private int _count;
 
@@ -37,6 +38,7 @@
         {
             if (_count == _persons.Length)
             {
+                //TODO: to const
                 Person[] personsNew = new Person[_count + 10];
 
                 for (int i = 0; i < _count; i++)
@@ -78,6 +80,7 @@
         /// <param name="index">Индекс удаляемой персоны.</param>
         public void RemoveAt(int index)
         {
+            //TODO: back resize
             if (index >= 0 && index < _count)
             {
                 for (int i = index; i < _count - 1; i++)

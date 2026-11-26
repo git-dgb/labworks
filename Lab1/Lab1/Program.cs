@@ -2,6 +2,7 @@
 
 internal class Program
 {
+    //TODO: XML
     private static void Main(string[] args)
     {
         Person person = new Person("", "", 0, Gender.Male);
@@ -107,6 +108,7 @@ internal class Program
             $"Второй список (количество человек — {secondList.Count}):");
     }
 
+    //TODO: XML
     // Выводит содержимое списка с указанным заголовком.
     private static void PrintList(PersonList list, string title)
     {
@@ -125,6 +127,7 @@ internal class Program
         }
     }
 
+    //TODO: XML
     // Приостанавливает выполнение программы до нажатия клавиши.
     private static void WaitForKey()
     {
