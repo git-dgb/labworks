@@ -106,7 +106,7 @@
             }
             set
             {
-                //TODO: validation
+                //TODO: validation+
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(
@@ -139,20 +139,21 @@
             Gender = gender;
         }
 
-        //TODO: refactor
+        //TODO: refactor+
         /// <summary>
         /// Выводит информацию о человеке в консоль.
         /// </summary>
-        public void Print()
+        /// <param name="output">Приёмник вывода.</param>
+        public void Print(IOutputProvider output)
         {
-            Console.WriteLine(
-                $"Имя: {FirstName}\n" +
-                $"Фамилия: {LastName}\n" +
-                $"Возраст: {Age}\n" +
-                $"Пол: {Gender}\n");
+            output.WriteLine($"Имя: {FirstName}");
+            output.WriteLine($"Фамилия: {LastName}");
+            output.WriteLine($"Возраст: {Age}");
+            output.WriteLine($"Пол: {Gender}");
+            output.WriteLine(string.Empty);
         }
 
-        //TODO: refactor
+        //TODO: refactor+
         /// <summary>
         /// Считывает данные о человеке с консоли.
         /// Проверяет корректность введённых значений.

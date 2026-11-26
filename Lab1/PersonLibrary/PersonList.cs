@@ -5,7 +5,20 @@
     /// </summary>
     public class PersonList
     {
-        //TODO: XML
+        /// <summary>
+        /// Объявление константы - величины изменения размера массива.
+        /// </summary>
+        private const int GrowthStep = 10;
+
+        /// <summary>
+        /// Объявление константы - начального размера массива.
+        /// </summary>
+        private const int InitialCapacity = 10;
+
+        //TODO: XML+
+        /// <summary>
+        /// Создание приватных полей класса.
+        /// </summary>
         private Person[] _persons;
         private int _count;
 
@@ -25,7 +38,7 @@
         /// </summary>
         public PersonList()
         {
-            _persons = new Person[10];
+            _persons = new Person[InitialCapacity];
             _count = 0;
         }
 
@@ -38,8 +51,8 @@
         {
             if (_count == _persons.Length)
             {
-                //TODO: to const
-                Person[] personsNew = new Person[_count + 10];
+                //TODO: to const+
+                Person[] personsNew = new Person[_count + GrowthStep];
 
                 for (int i = 0; i < _count; i++)
                 {
@@ -139,6 +152,21 @@
             }
 
             _count = 0;
+        }
+
+        /// <summary>
+        /// Сжатие массива путём создания нового с меньшим размером
+        /// </summary>
+        private void Resize(int newCapacity)
+        {
+            Person[] personsNew = new Person[newCapacity];
+
+            for (int i = 0; i < _count; i++)
+            {
+                personsNew[i] = _persons[i];
+            }
+
+            _persons = personsNew;
         }
     }
 }

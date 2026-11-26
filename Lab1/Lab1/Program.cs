@@ -1,24 +1,31 @@
 ﻿using PersonLibrary;
+using System;
 
 internal class Program
 {
-    //TODO: XML
+    //TODO: XML+
     private static void Main(string[] args)
     {
         IInputProvider consoleInput = new ConsoleInputProvider();
+        IOutputProvider consoleOutput = new ConsoleOutputProvider();
         Person newPerson = new Person("Иван", "Иванов", 0, Gender.Male);
         newPerson.Read(consoleInput);
+        newPerson.Print(consoleOutput);
 
         WaitForKey();
 
-        // Создаём два списка персон.
+        /// <summary>
+        /// Создаём два списка персон.
+        /// </summary>
         Console.WriteLine(
             "Создание двух списков персон, содержащих по три человека...");
 
         PersonList firstList = new PersonList();
         PersonList secondList = new PersonList();
 
-        // Создаём шесть случайных персон.
+        /// <summary>
+        /// Создаём шесть случайных персон.
+        /// </summary>
         Person person1 = Person.GetRandomPerson();
         Person person2 = Person.GetRandomPerson();
         Person person3 = Person.GetRandomPerson();
@@ -28,7 +35,9 @@ internal class Program
 
         WaitForKey();
 
-        // Добавляем по три персоны в каждый список.
+        /// <summary>
+        /// Добавляем по три персоны в каждый список.
+        /// </summary>
         Console.WriteLine("Заполнение списков и вывод их содержимого...");
 
         firstList.Add(person1);
@@ -44,7 +53,9 @@ internal class Program
 
         WaitForKey();
 
-        // Добавляем новую персону в первый список.
+        /// <summary>
+        /// Добавляем новую персону в первый список.
+        /// </summary>
         Console.WriteLine("Добавление нового человека в первый список...");
 
         Person person7 = new Person(
@@ -61,8 +72,10 @@ internal class Program
 
         WaitForKey();
 
-        // Получаем вторую персону первого списка
-        // и добавляем ту же ссылку в конец второго списка.
+        /// <summary>
+        /// Получаем вторую персону первого списка
+        /// и добавляем ту же ссылку в конец второго списка.
+        /// </summary>
         Console.WriteLine(
             "Копирование второго человека из первого списка " +
             "в конец второго списка...");
@@ -83,8 +96,10 @@ internal class Program
 
         WaitForKey();
 
-        // Удаляем персону из первого списка.
-        // Во втором списке ссылка на этот объект сохраняется.
+        /// <summary>
+        /// Удаляем персону из первого списка.
+        /// Во втором списке ссылка на этот объект сохраняется.
+        /// </summary>
         Console.WriteLine(
             "Удаление второго человека из первого списка...");
 
@@ -98,7 +113,9 @@ internal class Program
 
         WaitForKey();
 
-        // Очищаем второй список.
+        /// <summary>
+        /// Очищаем второй список.
+        /// </summary>
         Console.WriteLine("Очистка второго списка...");
 
         secondList.Clear();
@@ -108,8 +125,10 @@ internal class Program
             $"Второй список (количество человек — {secondList.Count}):");
     }
 
-    //TODO: XML
-    // Выводит содержимое списка с указанным заголовком.
+    //TODO: XML+
+    /// <summary>
+    /// Выводит содержимое списка с указанным заголовком.
+    /// </summary>
     private static void PrintList(PersonList list, string title)
     {
         Console.WriteLine(title);
@@ -127,8 +146,10 @@ internal class Program
         }
     }
 
-    //TODO: XML
-    // Приостанавливает выполнение программы до нажатия клавиши.
+    //TODO: XML+
+    /// <summary>
+    /// Приостанавливает выполнение программы до нажатия клавиши.
+    /// </summary>
     private static void WaitForKey()
     {
         Console.WriteLine(
