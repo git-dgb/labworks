@@ -17,13 +17,13 @@
 
         //TODO: XML+
         /// <summary>
-        /// Создание приватных полей класса.
+        /// Массив для хранения персон.
         /// </summary>
         private Person[] _persons;
         private int _count;
 
         /// <summary>
-        /// Возвращает количество персон в списке.
+        /// Количество персон в списке.
         /// </summary>
         public int Count
         {
@@ -54,6 +54,9 @@
                 //TODO: to const+
                 Resize(_persons.Length + GrowthStep);
             }
+
+            _persons[_count] = person;
+            _count++;
         }
 
         /// <summary>
@@ -156,11 +159,6 @@
             }
 
             _persons = personsNew;
-
-            if (_persons.Length > InitialCapacity)
-            {
-                _persons = new Person[InitialCapacity];
-            }
         }
     }
 }
